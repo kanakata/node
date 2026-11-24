@@ -1,0 +1,690 @@
+/* ==========================================================================
+         Design Tokens: 1894 Iron-Gall Ink & Foxed Rag Paper Palette
+         ========================================================================== */
+:root {
+  --bg-rag-paper: #efe4ce;
+  --bg-broadsheet: #f7efe0;
+  --bg-inset: #eadcc3;
+  --ink-gall: #231b12;
+  --ink-sepia: #4a3c2c;
+  --ink-faded: #75644e;
+  --ink-crimson: #7a2318;
+  --ink-crimson-deep: #59160e;
+  --rule-dark: #231b12;
+  --rule-mid: #9c896e;
+  --rule-faint: #cbbba0;
+  --shadow-plate: 0 2px 0 rgba(35, 27, 18, 0.12),
+    0 14px 32px -14px rgba(35, 27, 18, 0.28);
+
+  --font-display: 'IM Fell English', 'Baskerville', Georgia, serif;
+  --font-serif: 'EB Garamond', 'Palatino Linotype', Georgia, serif;
+  --font-mono: 'Courier Prime', 'Courier New', monospace;
+}
+
+/* ==========================================================================
+             Base Reset & Aged Rag Paper Texture
+             ========================================================================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100dvh;
+  width: 100%;
+  background-color: var(--bg-rag-paper);
+  /* Layered foxing speckles, aged tea-stain vignette & horizontal laid-paper lines */
+  background-image:
+              /* Subtle foxing age spots */ radial-gradient(
+      circle at 14% 18%,
+      rgba(122, 74, 34, 0.09) 0px,
+      transparent 3px
+    ),
+    radial-gradient(
+      circle at 86% 24%,
+      rgba(110, 66, 28, 0.08) 0px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 79% 82%,
+      rgba(122, 74, 34, 0.1) 0px,
+      transparent 3.5px
+    ),
+    radial-gradient(
+      circle at 22% 76%,
+      rgba(98, 58, 24, 0.07) 0px,
+      transparent 2.5px
+    ),
+    radial-gradient(
+      circle at 52% 91%,
+      rgba(110, 66, 28, 0.08) 0px,
+      transparent 3px
+    ),
+    /* Fine horizontal laid-paper watermark lines */
+      repeating-linear-gradient(
+        0deg,
+        rgba(35, 27, 18, 0.018) 0px,
+        rgba(35, 27, 18, 0.018) 1px,
+        transparent 1px,
+        transparent 4px
+      ),
+    /* Warm darkened book-edge vignette */
+      radial-gradient(
+        ellipse at 50% 45%,
+        rgba(255, 250, 240, 0.38) 0%,
+        rgba(176, 152, 116, 0.42) 100%
+      );
+  color: var(--ink-gall);
+  font-family: var(--font-serif);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(1rem, 3.5vw, 2.5rem) 0.9rem 3rem;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Full-page subtle SVG organic paper noise overlay */
+.paper-grain-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.24;
+  mix-blend-mode: multiply;
+}
+
+/* ==========================================================================
+             Broadsheet Folio Container
+             ========================================================================== */
+.folio-wrapper {
+  width: 100%;
+  max-width: 660px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+             1894 Dictionary Masthead & Running Header
+             ========================================================================== */
+.masthead {
+  background-color: var(--bg-broadsheet);
+  border: 2px solid var(--rule-dark);
+  padding: 0.95rem 1.25rem 1.25rem;
+  box-shadow: var(--shadow-plate);
+  position: relative;
+  text-align: center;
+}
+
+/* Inner hairline border frame */
+.masthead::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--rule-mid);
+  pointer-events: none;
+}
+
+.running-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-sepia);
+  padding-bottom: 0.55rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule-dark);
+}
+
+.masthead-title-row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.masthead h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 6vw, 3.1rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.05;
+  color: var(--ink-gall);
+  text-transform: uppercase;
+  text-shadow: 0.5px 0.5px 0 rgba(35, 27, 18, 0.22);
+}
+
+.masthead-subtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.02rem;
+  color: var(--ink-sepia);
+  margin-top: 0.25rem;
+}
+
+.woodcut-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 0.65rem;
+  color: var(--ink-crimson);
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  user-select: none;
+}
+
+.woodcut-rule::before,
+.woodcut-rule::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  max-width: 110px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--rule-dark),
+    transparent
+  );
+}
+
+/* Tilted Ink Library Stamp */
+.archival-stamp {
+  display: inline-block;
+  margin-top: 0.65rem;
+  padding: 0.14rem 0.55rem;
+  border: 1.5px double var(--ink-crimson);
+  color: var(--ink-crimson);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transform: rotate(-1.6deg);
+  opacity: 0.86;
+}
+
+@media (min-width: 560px) {
+  .archival-stamp {
+    position: absolute;
+    right: 0.25rem;
+    bottom: -0.25rem;
+    margin-top: 0;
+    transform: rotate(-5deg);
+  }
+}
+
+/* ==========================================================================
+             Brass-and-Ink Library Card Catalog Search Drawer
+             ========================================================================== */
+.catalog-card {
+  background-color: var(--bg-broadsheet);
+  border: 2px solid var(--rule-dark);
+  padding: 1.25rem 1.35rem 1.15rem;
+  box-shadow: var(--shadow-plate);
+  position: relative;
+}
+
+.catalog-card::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--rule-faint);
+  pointer-events: none;
+}
+
+.catalog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-sepia);
+  margin-bottom: 0.6rem;
+}
+
+.catalog-header-code {
+  color: var(--ink-faded);
+  font-size: 0.66rem;
+}
+
+.search-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 500px) {
+  .search-row {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.input-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.55rem 2.2rem 0.55rem 0.85rem;
+  font-family: var(--font-display);
+  font-size: 1.28rem;
+  color: var(--ink-gall);
+  background-color: var(--bg-inset);
+  border: 2px solid var(--rule-dark);
+  border-radius: 0;
+  box-shadow: inset 1px 2px 4px rgba(35, 27, 18, 0.14);
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.search-input::placeholder {
+  color: var(--ink-faded);
+  font-style: italic;
+  font-size: 1.12rem;
+}
+
+.search-input:focus {
+  outline: none;
+  background-color: #fbf5e8;
+  border-color: var(--ink-crimson);
+  box-shadow: inset 1px 2px 4px rgba(35, 27, 18, 0.1),
+    0 0 0 2px rgba(122, 35, 24, 0.22);
+}
+
+.clear-btn {
+  position: absolute;
+  right: 0.45rem;
+  background: transparent;
+  border: none;
+  color: var(--ink-sepia);
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.clear-btn.visible {
+  display: flex;
+}
+
+.clear-btn:hover {
+  color: var(--ink-crimson);
+}
+
+/* Letterpress Iron-Gall Ink Button */
+.submit-btn {
+  min-height: 46px;
+  padding: 0.6rem 1.45rem;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f7efe0;
+  background-color: var(--ink-gall);
+  border: 2px solid var(--ink-gall);
+  border-radius: 0;
+  box-shadow: 2px 2px 0 var(--rule-mid);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: var(--ink-crimson);
+  border-color: var(--ink-crimson-deep);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--rule-mid);
+}
+
+.submit-btn:focus-visible {
+  outline: 2px solid var(--ink-crimson);
+  outline-offset: 2px;
+}
+
+.submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Stamped Paper Slip Sample Words */
+.slips-bar {
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--rule-mid);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  position: relative;
+  z-index: 1;
+}
+
+.slips-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-right: 0.15rem;
+}
+
+.paper-slip {
+  background-color: #f2e7d2;
+  border: 1px solid var(--rule-mid);
+  box-shadow: 1px 1px 0 rgba(35, 27, 18, 0.15);
+  padding: 0.15rem 0.55rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-sepia);
+  cursor: pointer;
+  transition: all 0.14s ease;
+}
+
+.paper-slip:hover {
+  color: var(--ink-crimson);
+  border-color: var(--ink-crimson);
+  background-color: #fbf4e6;
+  transform: translateY(-1px);
+}
+
+.paper-slip:focus-visible {
+  outline: 2px solid var(--ink-crimson);
+  outline-offset: 1px;
+}
+
+/* ==========================================================================
+             Double-Bordered Broadsheet Index Plate (Main Definitions Area)
+             ========================================================================== */
+.index-plate {
+  background-color: var(--bg-broadsheet);
+  border: 2.5px solid var(--rule-dark);
+  padding: clamp(1.65rem, 4.5vw, 2.5rem) clamp(1.35rem, 4vw, 2.25rem);
+  box-shadow: var(--shadow-plate);
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+/* Inner hairline border frame */
+.index-plate::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid var(--rule-mid);
+  pointer-events: none;
+}
+
+/* Corner Fleuron Ornaments */
+.corner-ornament {
+  position: absolute;
+  font-size: 0.85rem;
+  line-height: 1;
+  color: var(--ink-sepia);
+  background-color: var(--bg-broadsheet);
+  padding: 0 3px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.corner-tl {
+  top: 1px;
+  left: 7px;
+}
+
+.corner-tr {
+  top: 1px;
+  right: 7px;
+  transform: scaleX(-1);
+}
+
+.corner-bl {
+  bottom: 1px;
+  left: 7px;
+  transform: scaleY(-1);
+}
+
+.corner-br {
+  bottom: 1px;
+  right: 7px;
+  transform: scale(-1, -1);
+}
+
+/* Entry Headword Header */
+.entry-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 3px double var(--rule-dark);
+}
+
+.headword-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.65rem;
+}
+
+.headword {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.65rem);
+  font-weight: 400;
+  color: var(--ink-gall);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+.headword::first-letter {
+  font-size: 1.18em;
+  color: var(--ink-crimson);
+}
+
+.phonetic {
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  color: var(--ink-sepia);
+}
+
+.pos-tag {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ink-crimson);
+}
+
+.entry-folio-code {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+
+/* Roman Numeral Definitions List */
+.definitions-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.05rem;
+}
+
+.definition-item {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  align-items: baseline;
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: var(--ink-gall);
+}
+
+.roman-numeral {
+  font-family: var(--font-display);
+  font-size: 0.96rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-crimson);
+}
+
+.def-body {
+  color: var(--ink-gall);
+}
+
+.def-pos-inline {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--ink-sepia);
+  margin-right: 0.35rem;
+}
+
+.def-example {
+  display: block;
+  margin-top: 0.25rem;
+  font-style: italic;
+  font-size: 1.04rem;
+  color: var(--ink-sepia);
+  padding-left: 0.75rem;
+  border-left: 1.5px solid var(--rule-mid);
+}
+
+.etymology-note {
+  margin-top: 1.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--rule-faint);
+  font-size: 0.98rem;
+  color: var(--ink-sepia);
+}
+
+.etymology-label {
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--ink-gall);
+}
+
+.archival-footnote {
+  margin-top: 1.25rem;
+  padding-top: 0.65rem;
+  border-top: 1px dotted var(--rule-mid);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-faded);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Empty, Loading & Error States */
+.state-panel {
+  text-align: center;
+  padding: 1.25rem 0.5rem;
+}
+
+.state-fleuron {
+  font-size: 1.4rem;
+  color: var(--ink-crimson);
+  margin-bottom: 0.45rem;
+  line-height: 1;
+}
+
+.state-heading {
+  font-family: var(--font-display);
+  font-size: 1.32rem;
+  font-style: italic;
+  color: var(--ink-sepia);
+}
+
+.state-caption {
+  margin-top: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+
+.state-error .state-heading {
+  color: var(--ink-crimson);
+  font-style: normal;
+}
+
+/* ==========================================================================
+             Antique Printer's Colophon Footer
+             ========================================================================== */
+.colophon {
+  text-align: center;
+  padding-top: 0.25rem;
+  color: var(--ink-sepia);
+}
+
+.colophon-ornament {
+  font-size: 0.85rem;
+  color: var(--ink-faded);
+  letter-spacing: 0.35em;
+  margin-bottom: 0.3rem;
+}
+
+.colophon-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.96rem;
+  letter-spacing: 0.03em;
+}
+
+.colophon-sub {
+  margin-top: 0.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 1rem;
+  color: var(--ink-faded);
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A 19th-century style dictionary app with authentic metal-type fonts and a broadsheet layout."
+    />
+    <meta
+      name="keywords"
+      content="dictionary, lexicon, 19th century, metal type, broadsheet, English language, word definitions"
+    />
+    <meta name="author" content="Patrick Kiprop" />
+    <title>The Pocket Lexicon — Est. MDCCCXCIV</title>
+    <!-- Authentic 19th-Century Metal-Type, Editorial Serif & Catalog Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital@0;1&family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=IM+Fell+English:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/index.css" />
+    <style></style>
+  </head>
+  <body>
+    <!-- Subtle Organic Paper Fiber & Grain Filter -->
+    <svg class="paper-grain-overlay" aria-hidden="true">
+      <filter id="rag-paper-noise">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.78"
+          numOctaves="4"
+          stitchTiles="stitch"
+        />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#rag-paper-noise)" />
+    </svg>
+
+    <div class="folio-wrapper">
+      <!-- 1894 Dictionary Masthead -->
+      <header class="masthead">
+        <div class="running-header">
+          <span>A Compendium of the English Tongue</span>
+          <span>Est. MDCCCXCIV &bull; Folio I</span>
+        </div>
+
+        <div class="masthead-title-row">
+          <h1>The Pocket Lexicon</h1>
+          <p class="masthead-subtitle">
+            Orthography, Pronunciation &amp; Signification of Words
+          </p>
+          <div class="woodcut-rule" aria-hidden="true">
+            <span>&#8212; &#10087; &#10070; &#10087; &#8212;</span>
+          </div>
+          <span class="archival-stamp">Archival Edition</span>
+        </div>
+      </header>
+
+      <!-- Library Card Catalog Drawer Search -->
+      <form id="form" class="catalog-card" novalidate>
+        <div class="catalog-header">
+          <label for="word">Consult the Index</label>
+          <span class="catalog-header-code"
+            >Drawer A&ndash;Z &bull; No. 1894</span
+          >
+        </div>
+
+        <div class="search-row">
+          <div class="input-wrapper">
+            <input
+              type="text"
+              name="word"
+              id="word"
+              class="search-input"
+              placeholder="Inscribe a word to examine&hellip;"
+              autocomplete="off"
+              autocapitalize="none"
+              spellcheck="false"
+              required
+            />
+            <button
+              type="button"
+              id="clear-btn"
+              class="clear-btn"
+              aria-label="Clear search field"
+              title="Clear"
+            >
+              &times;
+            </button>
+          </div>
+          <button type="submit" id="submit-btn" class="submit-btn">
+            Consult
+          </button>
+        </div>
+
+        <div class="slips-bar" aria-label="Sample index slips">
+          <span class="slips-label">Index Slips:</span>
+          <button type="button" class="paper-slip" data-word="ephemeral">
+            ephemeral
+          </button>
+          <button type="button" class="paper-slip" data-word="vellum">
+            vellum
+          </button>
+          <button type="button" class="paper-slip" data-word="serendipity">
+            serendipity
+          </button>
+          <button type="button" class="paper-slip" data-word="palimpsest">
+            palimpsest
+          </button>
+          <button type="button" class="paper-slip" data-word="gossamer">
+            gossamer
+          </button>
+        </div>
+      </form>
+
+      <!-- Double-Bordered Broadsheet Index Plate -->
+      <main class="index-plate" id="content" aria-live="polite">
+        <span class="corner-ornament corner-tl" aria-hidden="true"
+          >&#10087;</span
+        >
+        <span class="corner-ornament corner-tr" aria-hidden="true"
+          >&#10087;</span
+        >
+        <span class="corner-ornament corner-bl" aria-hidden="true"
+          >&#10087;</span
+        >
+        <span class="corner-ornament corner-br" aria-hidden="true"
+          >&#10087;</span
+        >
+
+        <div id="plate-body">
+          <div class="state-panel">
+            <div class="state-fleuron" aria-hidden="true">&#10086;</div>
+            <p class="state-heading">
+              Inscribe a word in the drawer above to turn to its leaf.
+            </p>
+            <p class="state-caption">Lexicon Open &bull; Awaiting Inquiry</p>
+          </div>
+        </div>
+      </main>
+
+      <!-- Antique Printer's Colophon -->
+      <footer class="colophon">
+        <div class="colophon-ornament" aria-hidden="true">
+          &#10070; &#10087; &#10070;
+        </div>
+        <p class="colophon-text">
+          Printed in Iron-Gall Ink &bull; Consult the Oracle of Letters
+        </p>
+        <p class="colophon-sub">
+          Set in Fell English &amp; Garamond Metal Type
+        </p>
+      </footer>
+    </div>
+
+    <footer>
+      <p>&copy; 2023 Dictionary App</p>
+      <p>All rights reserved.</p>
+      <p>Developed by Patrick Kiprop</p>
+    </footer>
+    <script src="/index.js"></script>
+  </body>
+</html>
